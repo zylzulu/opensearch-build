@@ -23,7 +23,7 @@ EnvironmentFile=-/etc/sysconfig/opensearch
 WorkingDirectory=/usr/share/opensearch
 User=opensearch
 Group=opensearch
-ExecStart=/usr/share/opensearch/bin/systemd-entrypoint -p ${PID_DIR}/elasticsearch.pid --quiet
+ExecStart=/usr/share/opensearch/bin/systemd-entrypoint -p ${PID_DIR}/opensearch.pid --quiet
 
 # StandardOutput is configured to redirect to journalctl since
 # some error messages may be logged in standard output before
