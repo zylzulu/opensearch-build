@@ -47,6 +47,10 @@ esac
 chown <%= user %>:<%= group %> <%= dataDir %>
 chown <%= user %>:<%= group %> <%= pluginsDir %>
 
+# Addtional folders
+mkdir -p $OPENSEARCH_HOME/data
+mkdir -p $OPENSEARCH_CONFIG_DIR
+mkdir -p /var/run/opensearch # PID DIR
 
 ############ Additional Plugins Settings ############
 
@@ -60,8 +64,6 @@ function pluginSettings() {
     sh $OPENSEARCH_HOME/plugins/opensearch-security/tools/install_demo_configuration.sh -y -i -s
 
     echo Apply PerformanceAnalyzer Settings
-    mkdir -p $OPENSEARCH_HOME/data
-    mkdir -p $OPENSEARCH_CONFIG_DIR
     echo 'true' > "$OPENSEARCH_HOME"/data/rca_enabled.conf
     echo 'true' > $OPENSEARCH_CONFIG_DIR/performance_analyzer_enabled.conf
     echo 'true' > $OPENSEARCH_CONFIG_DIR/rca_enabled.conf
@@ -98,3 +100,4 @@ chown -R <%= user %>:<%= group %> $OPENSEARCH_HOME
 chown -R <%= user %>:<%= group %> $OPENSEARCH_DATA_DIR
 chown -R <%= user %>:<%= group %> $OPENSEARCH_CONFIG_DIR
 chown -R <%= user %>:<%= group %> $OPENSEARCH_LOG_DIR
+chown -R <%= user %>:<%= group %> /var/run/opensearch
