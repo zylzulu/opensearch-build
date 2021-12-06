@@ -35,7 +35,7 @@ class AssembleArgs:
             "-d",
             "--distribution",
             dest="distribution",
-            help="Choose distribution",
+            help="Choose distribution.",
             default="tar",
         )
 

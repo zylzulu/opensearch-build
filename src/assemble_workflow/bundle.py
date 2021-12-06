@@ -11,7 +11,7 @@ import shutil
 import subprocess
 from abc import ABC, abstractmethod
 
-from assemble_workflow.dist import Dist
+from assemble_workflow.dists import Dists
 from paths.script_finder import ScriptFinder
 from system.temporary_directory import TemporaryDirectory
 
@@ -129,7 +129,7 @@ class Bundle(ABC):
             raise ValueError('Missing min "dist" in input artifacts.')
         min_dist_path = self._copy_component(min_bundle, "dist")
         logging.info(f"Copied min bundle to {min_dist_path}.")
-        min_dist = Dist.create_dist(min_bundle.name, min_dist_path, self.distribution)
+        min_dist = Dists.create_dist(min_bundle.name, min_dist_path, self.distribution)
         logging.info(f"Extracting dist into {self.tmp_dir.name}.")
         min_dist.extract(self.tmp_dir.name)
         logging.info(f"Extracted dist into {self.tmp_dir.name}.")
