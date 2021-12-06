@@ -50,7 +50,7 @@ chown <%= user %>:<%= group %> <%= pluginsDir %>
 # Add folder creation
 mkdir -p $OPENSEARCH_HOME/data
 mkdir -p $OPENSEARCH_CONFIG_DIR
-mkdir -p /var/run/<%= product %>
+mkdir -p "/var/run/<%= product %>"
 
 ############ Additional Plugins Settings ############
 
@@ -100,4 +100,4 @@ chown -R <%= user %>:<%= group %> $OPENSEARCH_HOME
 chown -R <%= user %>:<%= group %> $OPENSEARCH_DATA_DIR
 chown -R <%= user %>:<%= group %> $OPENSEARCH_CONFIG_DIR
 chown -R <%= user %>:<%= group %> $OPENSEARCH_LOG_DIR
-chrown -R <%= user %>:<%= group %> /var/run/<%= product %>
+chown -R <%= user %>:<%= group %> "/var/run/<%= product %>"
