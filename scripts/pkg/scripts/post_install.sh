@@ -47,18 +47,19 @@ esac
 chown <%= user %>:<%= group %> <%= dataDir %>
 chown <%= user %>:<%= group %> <%= pluginsDir %>
 
-# Add folder creation
-mkdir -p $OPENSEARCH_HOME/data
-mkdir -p $OPENSEARCH_CONFIG_DIR
-mkdir -p "/var/run/<%= product %>"
-mkdir -p OPENSEARCH_LOG_DIR
-
-############ Additional Plugins Settings ############
-
+############ Additional System Settings ############
 OPENSEARCH_HOME=<%= homeDir %>
 OPENSEARCH_DATA_DIR=<%= dataDir %>
 OPENSEARCH_CONFIG_DIR=<%= configDir %>
 OPENSEARCH_LOG_DIR=<%= logDir %>
+PRODUCT=<%= product %>
+
+mkdir -p $OPENSEARCH_HOME/data
+mkdir -p $OPENSEARCH_CONFIG_DIR
+mkdir -p /var/run/$PRODUCT
+mkdir -p $OPENSEARCH_LOG_DIR
+
+############ Additional Plugins Settings ############
 
 function pluginSettings() {
     echo Apply Security Settings
@@ -90,7 +91,7 @@ function pluginSettings() {
 
 }
 
-if [ "<%= product %>" = "opensearch" ]
+if [ "$PRODUCT" = "opensearch" ]
 then
     echo Product is OpenSearch, apply plugin settings
 
@@ -106,4 +107,4 @@ chown -R <%= user %>:<%= group %> $OPENSEARCH_HOME
 chown -R <%= user %>:<%= group %> $OPENSEARCH_DATA_DIR
 chown -R <%= user %>:<%= group %> $OPENSEARCH_CONFIG_DIR
 chown -R <%= user %>:<%= group %> $OPENSEARCH_LOG_DIR
-chown -R <%= user %>:<%= group %> "/var/run/<%= product %>"
+chown -R <%= user %>:<%= group %> "/var/run/$PRODUCT"
