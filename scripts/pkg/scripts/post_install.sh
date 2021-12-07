@@ -51,6 +51,7 @@ chown <%= user %>:<%= group %> <%= pluginsDir %>
 mkdir -p $OPENSEARCH_HOME/data
 mkdir -p $OPENSEARCH_CONFIG_DIR
 mkdir -p "/var/run/<%= product %>"
+mkdir -p OPENSEARCH_LOG_DIR
 
 ############ Additional Plugins Settings ############
 
@@ -92,6 +93,11 @@ function pluginSettings() {
 if [ "<%= product %>" = "opensearch" ]
 then
     echo Product is OpenSearch, apply plugin settings
+
+    # Redirect Logs
+    echo "path.logs: $OPENSEARCH_LOG_DIR" >> $OPENSEARCH_CONFIG_DIR/opensearch.yml
+
+    # Plugin Settings
     pluginSettings || echo plugin settings failed
     
 fi
