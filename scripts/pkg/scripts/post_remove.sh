@@ -68,4 +68,8 @@ if [ "$REMOVE_DIRS" = "true" ]; then
   if [ -d "<%= dataDir %>" ]; then
     rmdir --ignore-fail-on-non-empty "<%= dataDir %>"
   fi
+
+  if [ -d "/var/run/<%= product %>" ]; then
+    rmdir --ignore-fail-on-non-empty "/var/run/<%= product %>"
+  fi
 fi
