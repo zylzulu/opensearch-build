@@ -12,7 +12,8 @@ Description=OpenSearch
 Documentation=https://opensearch.org/
 
 [Service]
-Type=notify
+#Type=notify
+Type=simple
 RuntimeDirectory=opensearch
 PrivateTmp=true
 Environment=OPENSEARCH_HOME=/usr/share/opensearch

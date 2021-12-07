@@ -86,7 +86,7 @@ function pluginSettings() {
     if command -v systemctl > /dev/null; then
         echo '# Enabling OpenSearch performance analyzer to start and stop along with opensearch.service'
         systemctl daemon-reload
-        systemctl enable opensearch-performance-analyzer.service || true
+        #systemctl enable opensearch-performance-analyzer.service || true
     fi
 
 }
