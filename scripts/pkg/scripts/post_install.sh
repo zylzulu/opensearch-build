@@ -93,14 +93,20 @@ function pluginSettings() {
 
 if [ "$PRODUCT" = "opensearch" ]
 then
-    echo Product is OpenSearch, apply plugin settings
+    echo Product is OpenSearch, apply additional settings
 
     # Redirect Logs
     echo "path.logs: $OPENSEARCH_LOG_DIR" >> $OPENSEARCH_CONFIG_DIR/opensearch.yml
 
     # Plugin Settings
     pluginSettings || echo plugin settings failed
-    
+elif [ "$PRODUCT" = "opensearch-dashboards" ]
+then
+    echo Product is OpenSearch-Dashboards, apply additional settings
+
+    # Redirect Logs
+    echo "logging.dest: $OPENSEARCH_LOG_DIR/opensearch-dashboards.log" >> $OPENSEARCH_CONFIG_DIR/opensearch_dashboards.yml
+
 fi
 
 chown -R <%= user %>:<%= group %> $OPENSEARCH_HOME
